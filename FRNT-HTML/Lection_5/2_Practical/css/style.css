@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Bankir';
+    src: url('../fonts/bankir-retro-webfont.eot');
+    src: url('../fonts/bankir-retro-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/bankir-retro-webfont.woff2') format('woff2'),
+    url('../fonts/bankir-retro-webfont.woff') format('woff'),
+    url('../fonts/bankir-retro-webfont.ttf') format('truetype'),
+    url('../fonts/bankir-retro-webfont.svg#bankir-retroregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: "Bankir", Helvetica, Arial, sans-serif;
+}
+
+.container {
+    margin: 50px auto;
+    max-width: 960px;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+p {
+    font-size: 2rem;
+}
+
+span{
+    color: royalblue;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}

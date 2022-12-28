@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Car</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body>
+    <header class="main-header">
+      <div class="container">
+        <nav class="main-nav">
+          <div class="logo-line">
+            <a class="logo" href="#">
+              <img class="logo__img" src="img/porsche-logo.svg" alt="Логотип Grid Car">
+            </a>
+          </div>
+          <ul class="main-menu menu">
+            <li class="main-menu__item">
+              <a class="main-menu__link" href="#">Модели</a>
+            </li>
+            <li class="main-menu__item">
+              <a class="main-menu__link" href="#">Новые автомобили</a>
+            </li>
+            <li class="main-menu__item">
+              <a class="main-menu__link" href="#">Автомобили с&nbsp;пробегом</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="page container">
+      <div class="scene">
+        <div class="car animated fadeInLeftBig">
+          <img class="car__shadow" src="img/car-shadow.png" alt="Тень автомобиля">
+          <div class="car__wheel-front">
+            <img class="car__wheel-front-rotor wheel-spin anima" src="img/wf-assets/rotor.png" alt="передний тормозной диск">
+            <img class="car__wheel-front-caliper" src="img/wf-assets/caliper.png" alt="передний суппорт тормоза">
+            <img class="car__wheel-front-disc wheel-spin anima" src="img/wf-assets/disc.png" alt="передний диск колеса">
+          </div>
+          <div class="car__wheel-rear">
+            <img class="car__wheel-rear-rotor wheel-spin anima" src="img/wr-assets/rotor.png" alt="задний тормозной диск">
+            <img class="car__wheel-rear-caliper" src="img/wr-assets/caliper.png" alt="задний суппорт тормоза">
+            <img class="car__wheel-rear-disc wheel-spin anima" src="img/wr-assets/disc.png" alt="задний диск колеса">
+          </div>
+          <img class="car__body car-shake" src="img/car_body.png" alt="Изображение автомобиля">
+        </div>
+      </div>
+
+      <section class="model-range">
+        <div class="container-fluid">
+          <h2 class="headline">Модельный ряд</h2>
+          <div class="models">
+            <div class="model__item">
+              <img class="model__img" src="img/small-718.webp" alt="Модель 718">
+              <div class="model__info">
+                <div class="model__text">
+                  <div class="model__name">718</div>
+                  <div class="model__price">4 180 000</div>
+                </div>
+                <div class="model__link">
+                  <a class="btn btn-default" href="#" >Конфигуратор</a>
+                  <a class="btn btn-bordered" href="#" >Обзор</a>
+                </div>
+              </div>
+            </div>
+            <div class="model__item">
+              <img class="model__img" src="img/small-911.webp" alt="Модель 911">
+              <div class="model__info">
+                <div class="model__text">
+                  <div class="model__name">911</div>
+                  <div class="model__price">7 590 000</div>
+                </div>
+                <div class="model__link">
+                  <a class="btn btn-default" href="#" >Конфигуратор</a>
+                  <a class="btn btn-bordered" href="#" >Обзор</a>
+                </div>
+              </div>
+            </div>
+            <div class="model__item">
+              <img class="model__img" src="img/small-taycan.webp" alt="Модель Taycan">
+              <div class="model__info">
+                <div class="model__text">
+                  <div class="model__name">Taycan</div>
+                  <div class="model__price">7 793 000</div>
+                </div>
+                <div class="model__link">
+                  <a class="btn btn-default" href="#" >Конфигуратор</a>
+                  <a class="btn btn-bordered" href="#" >Обзор</a>
+                </div>
+              </div>
+            </div>
+            <div class="model__item">
+              <img class="model__img" src="img/small-panamera.webp" alt="Модель Panamera">
+              <div class="model__info">
+                <div class="model__text">
+                  <div class="model__name">Panamera</div>
+                  <div class="model__price"> 6 651 000</div>
+                </div>
+                <div class="model__link">
+                  <a class="btn btn-default" href="#" >Конфигуратор</a>
+                  <a class="btn btn-bordered" href="#" >Обзор</a>
+                </div>
+              </div>
+            </div>
+            <div class="model__item">
+              <img class="model__img" src="img/small-macan.webp" alt="Модель Macan">
+              <div class="model__info">
+                <div class="model__text">
+                  <div class="model__name">Macan</div>
+                  <div class="model__price">4 128 000</div>
+                </div>
+                <div class="model__link">
+                  <a class="btn btn-default" href="#" >Конфигуратор</a>
+                  <a class="btn btn-bordered" href="#" >Обзор</a>
+                </div>
+              </div>
+            </div>
+            <div class="model__item">
+              <img class="model__img" src="img/small-cayenne.webp" alt="Модель Cayenne">
+              <div class="model__info">
+                <div class="model__text">
+                  <div class="model__name">Cayenne</div>
+                  <div class="model__price">4 999 000</div>
+                </div>
+                <div class="model__link">
+                  <a class="btn btn-default" href="#" >Конфигуратор</a>
+                  <a class="btn btn-bordered" href="#" >Обзор</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="js/script.js"></script>
+  </body>
+</html>

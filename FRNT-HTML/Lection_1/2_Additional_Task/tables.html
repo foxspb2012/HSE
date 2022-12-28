@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Таблицы</title>
+	<style>
+        table, th, td {
+            border: 1px solid black
+        }
+
+        .text-center {
+            text-align: center
+        }
+
+        .graphic-editors {
+            border-spacing: 0;
+        }
+
+        .graphic-editors th,
+        .graphic-editors td {
+            padding: 5px;
+        }
+	</style>
+</head>
+<body>
+<main>
+	<h1>Таблицы</h1>
+
+
+	<h2>Значение табличных тегов</h2>
+	<table>
+		<tr>
+			<th>Тег элемента</th>
+			<th>Описание элемента</th>
+		</tr>
+		<tr>
+			<td>table</td>
+			<td>Контейнер таблицы</td>
+		</tr>
+		<tr>
+			<td>tr</td>
+			<td>Строка таблицы</td>
+		</tr>
+		<tr>
+			<td>th</td>
+			<td>Ячейка заголовка</td>
+		</tr>
+		<tr>
+			<td>td</td>
+			<td>Ячейка данных</td>
+		</tr>
+		<tr>
+			<td>caption</td>
+			<td>Заголовок таблицы</td>
+		</tr>
+	</table>
+
+	<h2>Учебный план на неделю</h2>
+	<table>
+		<caption>
+			<small>Для получения актуальной информации звоните по телефону:
+				<a href="tel:+78127030202">703-02-02</a>
+			</small>
+		</caption>
+		<tr>
+			<th colspan="3">11 окт - 17 окт</th>
+		</tr>
+		<tr>
+			<th>Время</th>
+			<th>Предмет</th>
+			<th>Тема</th>
+		</tr>
+		<tr>
+			<td class="text-center" colspan="3">Понедельник</td>
+		</tr>
+		<tr>
+			<td>18:00</td>
+			<td>HTML5+CSS3</td>
+			<td>Вёрстка выпадающих меню</td>
+		</tr>
+		<tr>
+			<td class="text-center" colspan="3">Среда</td>
+		</tr>
+		<tr>
+			<td>18:00</td>
+			<td>JavaScript</td>
+			<td>Типы переменных и их использование</td>
+		</tr>
+		<tr>
+			<td class="text-center" colspan="3">Пятница</td>
+		</tr>
+		<tr>
+			<td>18:00</td>
+			<td>HTML5+CSS3</td>
+			<td>Виды форм</td>
+		</tr>
+	</table>
+
+	<h2>Таблица внутри таблицы</h2>
+	<table>
+		<tr>
+			<th>В этом столбце располагается таблица внутри таблицы</th>
+			<th>Этот столбец нужен, чтобы запутать верстальщика ещё больше</th>
+		</tr>
+		<tr>
+			<td>
+				<table>
+					<tr>
+						<td>Проверяйте ваши таблицы в валидаторе</td>
+						<td><a href="https://validator.w3.org/#validate_by_input+with_options">validator.w3.org</a></td>
+					</tr>
+					<tr>
+						<td>Инструментарий от студии Лебедева</td>
+						<td><a href="https://www.artlebedev.ru/typograf/">artlebedev.ru/typograf</a></td>
+					</tr>
+				</table>
+			</td>
+			<td>
+				Столбец, который обязателен по ТЗ
+			</td>
+		</tr>
+
+	</table>
+
+	<h2>Графические редакторы</h2>
+	<table class="graphic-editors">
+	<tr>
+		<th rowspan="2">&nbsp;</th>
+		<th colspan="2">Свойства</th>
+	</tr>
+	<tr>
+		<th>Название</th>
+		<th>Описание</th>
+	</tr>
+	<tr>
+		<td rowspan="2">Растровые</td>
+		<td>Adobe Photoshop</td>
+		<td>Профессиональный редактор для работы с фотоизображениями</td>
+	</tr>
+	<tr>
+		<td>Paint</td>
+		<td>Примитивная программа, идущая в комплекте стандартных приложений ОС Win</td>
+	</tr>
+	<tr>
+		<td rowspan="3">Векторные</td>
+		<td>Adobe Illustrator</td>
+		<td>Профессиональный редактор для создания векторной графики</td>
+	</tr>
+	<tr>
+		<td>CorelDRAW</td>
+		<td>Ещё один популярный редактор векторной графики</td>
+	</tr>
+	<tr>
+		<td>Inkscape</td>
+		<td>Свободный редактор для работы с форматом SVG</td>
+	</tr>
+	</table>
+
+</main>
+
+</body>
+</html>

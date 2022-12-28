@@ -1,0 +1,62 @@
+/*
+    Создайте стилевые описания для блоков с классами
+
+    .homer
+    .lisa
+    .maggie
+    .marge
+    .bart
+*/
+
+
+/*
+    Убираем поля и отступы у body, чтобы фон блоков рисовался от рамки браузера
+*/
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.homer {
+	position: fixed;
+
+	width: 239px;
+	height: 210px;
+	background: url(../img/simpsons/homer.png) no-repeat;
+}
+.lisa {
+	position: fixed;
+	right: 0;
+	top: 20%;
+	width: 191px;
+	height: 200px;
+	background: url(../img/simpsons/lisa.gif) no-repeat;
+
+}
+.maggie {
+	position: fixed;
+	left: 0;
+	bottom: 40%;
+	width: 184px;
+	height: 195px;
+	background: url(../img/simpsons/maggie.jpg) no-repeat;
+
+}
+.marge {
+	position: fixed;
+	right: 20%;
+	bottom: 0;
+	width: 233px;
+	height: 316px;
+	background: url(../img/simpsons/marge.png) no-repeat;
+}
+.bart {
+	position: fixed;
+	z-index: -1;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 365px;
+	height: 480px;
+	background: url(../img/simpsons/bart.jpg) no-repeat;
+}

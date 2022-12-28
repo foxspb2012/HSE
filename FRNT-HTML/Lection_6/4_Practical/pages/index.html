@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Aperture</title>
+  <link rel="icon" href="../favicon.ico">
+  <link rel="preload" href="fonts/MyRiad Pro/MyriadPro-Bold.woff2" as="font" crossorigin="anonymous">
+  <link rel="preload" href="fonts/MyRiad Pro/MyriadPro-Semibold.woff2" as="font" crossorigin="anonymous">
+  <link rel="preload" href="fonts/MyRiad Pro/MyriadPro-Regular.woff2" as="font" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/main.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+  <body>
+    <header class="main-header">
+      <div class="nav">
+        <div class="nav__top">
+          <div class="container contacts">
+            <ul class="contacts__list">
+              <li class="contacts__item contacts__item--email">
+                <a href="mailto:aperture@gmail.com" class="contacts__link">aperture@gmail.com</a>
+              </li>
+              <li class="contacts__item contacts__item--phone">
+                <a href="tel:+78127030202" class="contacts__link">(812)703-02-02</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="nav__bottom">
+          <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light nav__bottom--nav">
+              <a class="navbar-brand logo">
+                <img class="logo__img" src="../img/logo/logo.png" width="220" height="45" alt="Логотип Aperture">
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse navigation" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                  <ul class="navigation__list">
+                    <li class="navigation__item">
+                      <a href="about.html" class="navigation__link">О&nbsp;нас</a>
+                    </li>
+                    <li class="navigation__item">
+                      <a href="gallery.html" class="navigation__link">Галерея</a>
+                    </li>
+                    <li class="navigation__item">
+                      <a href="blog.html" class="navigation__link">Блог</a>
+                    </li>
+                    <li class="navigation__item">
+                      <a href="contacts.html" class="navigation__link">Контакты</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <h1 class="visually-hidden">Главная страница сайта Aperture</h1>
+      <div class="wrapper">
+        <div class="slider">
+          <div class="light-waves"></div>
+        </div>
+        <section class="main__section section">
+          <h2 class="section__heading text-center">Наши преимущества</h2>
+          <div class="container advantages">
+            <div class="row">
+              <div class="col-md-4 advantage">
+                <div class="advantage__description">
+                  <div class="advantage__payload">
+                    <p class="advantage__title">камера</p>
+                    <svg class="advantage__svg">
+                      <use xlink:href="../img/sprites/svg_sprite.svg#camera"></use>
+                    </svg>
+                    <p class="advantage__text">Только качественный контент. Обработанные профессиональным дизайнером фотографии
+                      в&nbsp;высоком качестве. Никаких стоковых изображений&nbsp;&mdash; все фотографии сделаны нашими руками, кровью и&nbsp;потом.
+                    </p>
+                  </div>
+                  <a href="" class="btn btn-default">подробнее</a>
+                </div>
+              </div>
+              <div class="col-md-4 advantage">
+                <div class="advantage__description">
+                  <div class="advantage__payload">
+                    <p class="advantage__title">зеркалка</p>
+                    <svg class="advantage__svg">
+                      <use xlink:href="../img/sprites/svg_sprite.svg#mirror"></use>
+                    </svg>
+                    <p class="advantage__text">С&nbsp;нами удобно работать. Мы&nbsp;всегда устанавливаем сроки, помогаем заполнить техническое задание и&nbsp;другие бумаги,
+                      а&nbsp;также выбрать подходящий пакет услуг и&nbsp;готовы предоставить бонусы постоянным клиентам.
+                    </p>
+                  </div>
+                  <a href="" class="btn btn-default">подробнее</a>
+                </div>
+              </div>
+              <div class="col-md-4 advantage">
+                <div class="advantage__description">
+                  <div class="advantage__payload">
+                    <p class="advantage__title">видео</p>
+                    <svg class="advantage__svg">
+                      <use xlink:href="../img/sprites/svg_sprite.svg#video"></use>
+                    </svg>
+                    <p class="advantage__text">Мы&nbsp;не&nbsp;просто выполняем ваш заказ, мы&nbsp;работаем над вашим проектом вместе с&nbsp;Вами.
+                      Мы&nbsp;всегда готовы помочь и&nbsp;предложить несколько креативных идей, если вы&nbsp;не&nbsp;уверены в&nbsp;ваших желаниях.
+                    </p>
+                  </div>
+                  <a href="" class="btn btn-default">подробнее</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__waves"></div>
+      <div class="footer__inner">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3 footer__block">
+              <div class="footer__org">
+                <a class="footer__logo">
+                  <svg class="footer__logo-svg" width="150" height="45">
+                    <use xlink:href="../img/sprites/svg_sprite.svg#logo-footer"></use>
+                  </svg>
+                </a>
+                <p class="footer__copyright">&copy;&nbsp;Aperture 2022. Все права защищены
+                </p>
+              </div>
+            </div>
+            <div class="col-md-3 footer__block">
+              <h3 class="footer__heading">Разделы</h3>
+              <ul class="tags">
+                <li class="tags__item">
+                  <a class="tags__link" href="#">Разработка</a>
+                </li>
+                <li class="tags__item">
+                  <a class="tags__link" href="#">Полиграфия</a>
+                </li>
+                <li class="tags__item">
+                  <a class="tags__link" href="#">Контакты</a>
+                </li>
+                <li class="tags__item">
+                  <a class="tags__link" href="#">Верстка</a>
+                </li>
+                <li class="tags__item">
+                  <a class="tags__link" href="#">Партнеры</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-3 footer__block">
+              <h3 class="footer__heading">Контакты</h3>
+              <ul class="address">
+                <li class="address__item contacts__item--email">
+                  <a class="address__link" href="mailto:aperture@gmail.com">aperture@gmail.com</a>
+                </li>
+                <li class="address__item contacts__item--phone">
+                  <a class="address__link" href="tel:+78127030202">(812)703-02-02</a>
+                </li>
+                <li class="address__item">
+                  <a class="address__link" href="tel:+78127030202">Санкт-Петербург, ул. Обручевых д.&nbsp;1</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-3 footer__block">
+              <h3 class="footer__heading ">Посетите нас в&nbsp;соц.сетях</h3>
+              <ul class="socials">
+                <li class="socials__item fab fa-vk">
+                  <a class="socials__link" href="#"></a>
+                </li>
+                <li class="socials__item fab fa-twitter">
+                  <a class="socials__link" href="#"></a>
+                </li>
+                <li class="socials__item fab fa-facebook-f">
+                  <a class="socials__link" href="#"></a>
+                </li>
+                <li class="socials__item fab fa-skype">
+                  <a class="socials__link" href="#"></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+body {
+    font-family: Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+}
+
+table {
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+    border-collapse: collapse;
+}
+
+tr {
+    border: 1px solid #eaeaea;
+}
+
+.t-row:hover {
+    background: #fafdff;
+}
+
+th {
+    text-align: center
+}
+
+th, td {
+    padding: 17px 15px;
+}
+
+.head {
+    background: #f8f9fd;
+    color: #415268;
+}
+
+.names {
+    font-weight: 600;
+}
+
+.post {
+    color: #4a519e;
+}
+
+.mail {
+    color: #023f9ccc;
+}
+
+.time {
+    display: inline-block;
+    border-radius: 5px;
+    padding: 0;
+    margin: 15px;
+}
+
+.full-time {
+    background-color: #d4fbff;
+    color: #0073ee;
+}
+
+.part-time {
+    background-color: #fff6ab;
+    color: #ee8200;
+}

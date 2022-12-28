@@ -1,0 +1,29 @@
+main {
+    padding: 25px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.vector::after {
+    display: block;
+    content: '';
+    margin-top: 5px;
+    border-bottom: 2px solid lightgrey;
+}
+
+.raster::after {
+    display: block;
+    content: '';
+    margin-top: 5px;
+    border-bottom: 1px solid black;
+}
+
+.raster-list-image li {
+    list-style-image: url("../img/tick.png");
+}
+
+.raster-list-letter {
+    list-style-type: lower-latin;
+}

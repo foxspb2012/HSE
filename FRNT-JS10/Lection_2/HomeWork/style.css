@@ -1,0 +1,90 @@
+body {
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #353535;
+    background-color: #f0f0ea;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.active {
+    color: red;
+}
+
+.map {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    overflow: hidden;
+    height: 750px;
+    background-color: #82bcc0;
+    background-image: url("img/map.png");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+
+.map h2 {
+    margin: 20px auto;
+}
+
+.map__pin {
+    position: absolute;
+    z-index: 1;
+    width: 50px;
+    height: 70px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+}
+
+.map__pin img {
+    position: absolute;
+    z-index: 1;
+    top: 5px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 50%;
+}
+
+.map__pin:active img,
+.map__pin--active img {
+    box-shadow: 0 0 15px 15px rgba(7, 65, 128, 0.7);
+}
+
+.map__pin--main {
+    width: 65px;
+    height: 65px;
+    cursor: move;
+}
+
+.map__pin--main img {
+    position: relative;
+    z-index: 1;
+    padding: 2px 6px 6px;
+    transform: translateY(-7px);
+    border: solid 5px #074180;
+    border-radius: 50%;
+    background-color: #ffffff;
+    box-sizing: content-box;
+}
+
+.map__pin--main svg {
+    position: absolute;
+    z-index: 0;
+    top: -50px;
+    left: -47px;
+    width: 156px;
+    height: 156px;
+    transition: transform 300ms ease-in;
+    transform: rotate(120deg) scale(0);
+    transform-origin: 78px 78px;
+}

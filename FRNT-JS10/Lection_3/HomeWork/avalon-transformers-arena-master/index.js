@@ -39,7 +39,7 @@ const getRandomCount = function () {
 // Константы
 const autoBotChecked = {
   autobots:
-    {min: 7, max: 10},
+    {min: 6, max: 10},
   desepticons:
     {min: 1, max: 5},
   random:
@@ -47,7 +47,7 @@ const autoBotChecked = {
 }
 
 // Переменные
-let intervalId;
+let intervalId = undefined;
 let inProcess = false;
 
 // Классы
@@ -109,7 +109,7 @@ class Arena {
 }
 
 // Функции
-const fillRadio = function fillRadio() {
+(function fillRadio() {
   const items = Object.keys(autoBotChecked);
 
   for (let i = 0; i <= items.length - 1; i++) {
@@ -125,9 +125,7 @@ const fillRadio = function fillRadio() {
     inputLabel.setAttribute('for', items[i]);
     document.querySelector('.manage__content-wrapper').append(inputNode);
   }
-}
-
-fillRadio();
+})(); // Функция IIFE для заполнения инпутов
 
 const runFight = function (side1, side2) {
   const bot1 = side1[side1.length - 1];
@@ -140,20 +138,25 @@ const runFight = function (side1, side2) {
     bot1.hit(bot2.attack());
     if (bot1.health === 0) {
       side1.pop();
-      lastAutobot.remove()
+      lastAutobot.remove();
     } else {
       lastAutobot.querySelector('span').textContent = `${bot1.health} hp`;
     }
 
-    bot2.hit(bot1.attack());
+    if (side1.length > 0) {
+      bot2.hit(bot1.attack());
+    }
+
     if (bot2.health === 0) {
       side2.pop();
-      lastDesepticon.remove()
+      lastDesepticon.remove();
     } else {
       lastDesepticon.querySelector('span').textContent = `${bot2.health} hp`;
     }
   } else {
-    myStopFunction()
+    const winnerText = side1.length > 0 ? 'Autobots wins!!!' : 'Deceptikons wins!!!';
+    showWinnerDescription(winnerText);
+    myStopFunction();
   }
 }
 
@@ -208,10 +211,17 @@ const restartBattle = function (restart = true) {
   const arenaDiv = document.querySelector('.arena');
   arenaDiv.querySelector('.arena-side-1').innerHTML = '';
   arenaDiv.querySelector('.arena-side-2').innerHTML = '';
+  const winnerDescription = document.querySelector('.winner-description');
+  winnerDescription.querySelector('.winner-description__text').textContent = '';
   if (restart) {
     document.querySelector('input').checked = true;
   }
   inProcess = false;
+}
+
+const showWinnerDescription = function (text='') {
+  const winnerDescription = document.querySelector('.winner-description');
+  winnerDescription.querySelector('.winner-description__text').textContent = text;
 }
 
 document.querySelector('.restart-battle')

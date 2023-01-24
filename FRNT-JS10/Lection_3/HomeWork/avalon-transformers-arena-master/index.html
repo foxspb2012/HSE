@@ -1,51 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<h1>Arena</h1>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1>Arena</h1>
 
-<div class="manage">
-  <fieldset class="manage__fieldset">
-    <legend class="manage__legend">
-      <span class="manage__legend-text">Who should win?</span>
-    </legend>
-    <div class="manage__content-wrapper manage__content-wrapper--type"></div>
-  </fieldset>
+    <!-- Блок управления -->
+    <div class="manage">
+      <fieldset class="manage__fieldset">
+        <legend class="manage__legend">
+          <span class="manage__legend-text">Who should win?</span>
+        </legend>
+        <div class="manage__content-wrapper manage__content-wrapper--type"></div>
+      </fieldset>
+      <button class="button start-battle">Fight!</button>
+      <button class="button restart-battle">Restart&#8635;</button>
+    </div>
 
-  <button class="button start-battle">Fight!</button>
-  <button class="button restart-battle">Restart&#8635;</button>
-</div>
-<div class="arena">
-  <div class="arena-side arena-side-1"></div>
-  <div class="arena-side arena-side-2"></div>
-</div>
+    <!-- Блок арены -->
+    <div class="arena">
+      <div class="arena-side arena-side-1"></div>
+      <div class="arena-side arena-side-2"></div>
+    </div>
 
-<template id="bot">
-  <div class="bot">
-    <span></span>
-  </div>
-</template>
+    <!-- Блок надписи победителя -->
+    <div class="winner-description">
+      <p class="winner-description__text"></p>
+    </div>
 
-<template id="inputItem">
-  <p class="manage__input-wrapper manage__input-wrapper--type">
-    <input class="manage__radio" type="radio" name="winner">
-    <label class="manage__label-radio"></label>
-  </p>
-</template>
+    <!-- Шаблон инпута -->
+    <template id="inputItem">
+      <p class="manage__input-wrapper manage__input-wrapper--type">
+        <input class="manage__radio" type="radio" name="winner">
+        <label class="manage__label-radio"></label>
+      </p>
+    </template>
 
-<div class="winner-description">
-  <p class="winner-description__text"></p>
-</div>
+    <!-- Шаблон бота -->
+    <template id="bot">
+      <div class="bot">
+        <span></span>
+      </div>
+    </template>
 
-
-<script src="index.js"></script>
-</body>
+    <script src="index.js"></script>
+  </body>
 </html>

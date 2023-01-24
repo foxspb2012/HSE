@@ -25,7 +25,11 @@
  *    количество милсекунд до следующего удара?
  */
 
-// Утилитарные функции
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/***** Переменные *****/
+let intervalId = undefined;
+
+/***** Утилитарные функции *****/
 const getRandomCount = function () {
   const radioValue = document.querySelector('.manage__radio:checked').value;
   const {min, max} = autoBotChecked[radioValue];
@@ -36,7 +40,7 @@ const getRandomCount = function () {
   return Math.floor(lower + Math.random() * (upper - lower + 1));
 };
 
-// Константы
+/***** Константы *****/
 const autoBotChecked = {
   autobots:
     {min: 6, max: 10},
@@ -46,11 +50,7 @@ const autoBotChecked = {
     {min: 1, max: 10},
 }
 
-// Переменные
-let intervalId = undefined;
-let inProcess = false;
-
-// Классы
+/***** Классы *****/
 class Transformer {
   constructor(name, health = 100) {
     this.name = name;
@@ -108,7 +108,8 @@ class Arena {
   }
 }
 
-// Функции
+/***** Функции *****/
+// Функция IIFE для заполнения инпутов
 (function fillRadio() {
   const items = Object.keys(autoBotChecked);
 
@@ -125,8 +126,9 @@ class Arena {
     inputLabel.setAttribute('for', items[i]);
     document.querySelector('.manage__content-wrapper').append(inputNode);
   }
-})(); // Функция IIFE для заполнения инпутов
+})();
 
+// Функция запуска битвы
 const runFight = function (side1, side2) {
   const bot1 = side1[side1.length - 1];
   const bot2 = side2[side2.length - 1];
@@ -160,6 +162,12 @@ const runFight = function (side1, side2) {
   }
 }
 
+// Функция остановки битвы
+function myStopFunction() {
+  clearInterval(intervalId);
+}
+
+// Функция отрисовки элемента разметки(бота) из шаблона
 const fillBots = function (items, selector) {
   for (let i = 0; i <= items.length - 1; i++) {
     const template = document.querySelector('#bot').content.querySelector('.bot');
@@ -169,36 +177,29 @@ const fillBots = function (items, selector) {
   }
 }
 
-function myStopFunction() {
-  clearInterval(intervalId);
-}
-
-const createAutobot = function (count = 1) {
-  const botArray = [];
-  for (let i = 0; i < count; i++) {
-    botArray.push(
-      new AutoBot(`OptimusPrime${i + 1}`, new Weapon(100, 1000)));
+// Функция создания трансформеров
+const createTransformers = function (count = 1, name = 'Autobot') {
+  const transformersArray = [];
+  if (name === 'Autobot') {
+    for (let i = 0; i < count; i++) {
+      transformersArray.push(
+        new AutoBot(`OptimusPrime${i + 1}`, new Weapon(100, 1000)));
+    }
+  } else if (name === 'Deceptikon') {
+    for (let i = 0; i < count; i++) {
+      transformersArray.push(
+        new Deceptikon(`Megatron${i + 1}`, 10000));
+    }
   }
-
-  return botArray;
+  return transformersArray;
 }
 
-const createDeceptikon = function (count = 1) {
-  const deceptikonArray = [];
-  for (let i = 0; i < count; i++) {
-    deceptikonArray.push(
-      new Deceptikon(`Megatron${i + 1}`, 10000));
-  }
-
-  return deceptikonArray;
-}
-
+// Функция создания трансформеров, создания разметки и запуска битвы
 const createBots = function () {
   restartBattle(false);
-  inProcess = true;
   const count = getRandomCount();
-  const side1 = createAutobot(count);
-  const side2 = createDeceptikon();
+  const side1 = createTransformers(count, 'Autobot');
+  const side2 = createTransformers(1,'Deceptikon');
 
   fillBots(side1, '.arena-side-1');
   fillBots(side2, '.arena-side-2');
@@ -206,6 +207,7 @@ const createBots = function () {
   arena.start();
 }
 
+// Функция перезапуска процесса битвы
 const restartBattle = function (restart = true) {
   myStopFunction(intervalId);
   const arenaDiv = document.querySelector('.arena');
@@ -216,14 +218,15 @@ const restartBattle = function (restart = true) {
   if (restart) {
     document.querySelector('input').checked = true;
   }
-  inProcess = false;
 }
 
-const showWinnerDescription = function (text='') {
+// Функция показа победителя
+const showWinnerDescription = function (text = '') {
   const winnerDescription = document.querySelector('.winner-description');
   winnerDescription.querySelector('.winner-description__text').textContent = text;
 }
 
+/***** Обработчики событий кликов *****/
 document.querySelector('.restart-battle')
   .addEventListener('click', () => restartBattle());
 document.querySelector('.start-battle')

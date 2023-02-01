@@ -76,7 +76,7 @@ const taskList = [
 function getList(taskList) {
   return new Promise((resolve, reject) => {
     setTimeout(() => resolve(taskList), 2000);
-    reject(new Error('Error'));
+    setTimeout(() => reject(new Error('Данные по "taskList" не были получены')), 2000);
   });
 }
 
@@ -113,7 +113,7 @@ document.querySelector('#button1')
 
 /***** Задание 2 - Чейнинг (цепочки) промисов *****/
 function later(value) {
-  return new Promise(resolve => setTimeout(resolve, 1000, value));
+  return new Promise((resolve) => setTimeout(resolve, 1000, value));
 }
 
 function collectString() {
@@ -168,4 +168,94 @@ delay(5000).then(() => getPromiseAll()
 
 /*****    Задание 6 - Напишите функцию, которая загрузит данные по первому фильму     *****/
 /***** в котором встретилась планета Татуин, предоставленный API (https://swapi.dev)  *****/
-fetch('https://swapi.dev/api/films').then(response => response.json()).then(result => console.log(result));
+// Мне показалось что для получения данных о планетах в фильмах не стоит каждый раз запрашивать
+// данные по планете, если мы получим все фильмы и будем обходить их в цикле и получать данные по планетам.
+// Для этого решения воспользуемся API сервера и получим ссылку на искомую планету и сами фильмы,
+// а уже потом будем в массиве ссылок на планеты искать подходящий нам первый фильм.
+
+
+// Общая функция получения ресурса
+async function getResource(url) {
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`Could not fetch ${url}, received ${res.status}`)
+  }
+  return await res.json();
+}
+
+const findingPlanet = 'Tatooine';
+
+(async () => {
+  try {
+    const [planet, films] = await Promise.all([
+      getResource(`https://swapi.dev/api/planets/?name=${findingPlanet}`),
+      getResource('https://swapi.dev/api/films')
+    ]);
+
+    const planetURL = planet.results[0].url;
+    const filmsRes = films.results;
+    const findingFilms = () => {
+      for (let i = 0; i <= filmsRes.length - 1; i++) {
+        const planets = filmsRes[i].planets;
+        if (planets.indexOf(planetURL) !== -1) {
+          return filmsRes[i];
+        }
+      }
+    }
+
+    console.log(findingFilms());
+  } catch (error) {
+    console.error(error.message);
+  }
+})
+();
+
+
+/*****       Задание 7 - Напишите функцию, которая выведет название транспортного средства         *****/
+/***** на котором впервые ехал Anakin Skywalker, используя предоставленный API (https://swapi.dev) *****/
+
+const findingPeople = 'Anakin Skywalker';
+
+(async () => {
+  try {
+    const connectionString = `https://swapi.dev/api/people/?search=${findingPeople}`;
+    const answer = await getResource(connectionString)
+      .then(response => response.results)
+      .then(people => people[0].vehicles)
+      .then(result => getResource(result[0]))
+      .then(vehicle => vehicle.name);
+
+    console.log(answer);
+  } catch (error) {
+    console.error(error.message);
+  }
+})();
+
+
+/*****  Задание 8 - НаНапишите функцию которая посылает запрос на http://localhost:3000 POST /echo  *****/
+/*****      со следующей полезной нагрузкой: { message: "Привет сервис, я жду от тебя ответа"}      *****/
+/*****   Примите ответ от сервера и выведите результат в консоль, используя синтаксис async/await.  *****/
+// сервер создан, его необходимо запустить - файл server.js в директории server
+
+async function postData(url = '', data = {}) {
+
+  const res = await fetch(url, {
+    method: 'POST',
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer',
+    body: JSON.stringify(data)
+  });
+
+  return await res.json();
+}
+
+postData('http://localhost:3000/echo', {message: "Привет сервис, я жду от тебя ответа"})
+  .then(res => console.log(res)
+  );
+

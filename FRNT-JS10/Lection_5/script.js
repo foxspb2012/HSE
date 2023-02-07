@@ -230,7 +230,7 @@ function renderPaginator(count, next, previous, currentPage) {
     const pageNumber = i + 1;
     lis +=
       `<li class="page-item ${currentPage === pageNumber ? 'active' : ''}">
-          <a class="page-link" ${currentPage === pageNumber ? '' : `href=${link}${pageNumber}`}  data-page=${pageNumber}>${pageNumber}</a>
+          <a class="page-link" ${currentPage === pageNumber ? '' : `href=${link}${pageNumber}`} data-page=${pageNumber}>${pageNumber}</a>
       </li>`;
   }
 
@@ -254,6 +254,4 @@ async function fillPage(currentPage) {
   handleModal();
 }
 
-
 fillPage(pageNumber);
-

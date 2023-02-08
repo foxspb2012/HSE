@@ -230,16 +230,18 @@ function renderPaginator(count, next, previous, currentPage) {
     const pageNumber = i + 1;
     lis +=
       `<li class="page-item ${currentPage === pageNumber ? 'active' : ''}">
-          <a class="page-link" ${currentPage === pageNumber ? '' : `href=${link}${pageNumber}`} data-page=${pageNumber}>${pageNumber}</a>
+          <a class="page-link" ${currentPage === pageNumber ? '' : `href=${link}${pageNumber}`}
+            data-page=${pageNumber}>${pageNumber}</a>
       </li>`;
   }
 
-  paginationEl.innerHTML = `<li class="page-item">
-      <a class="page-link ${hasPrevious ? '' : 'disabled'}" href=${hasPrevious ? previous : '#'} data-page=${currentPage - 1}>Backward</a>
+  paginationEl.innerHTML =
+    `<li class="page-item ${hasPrevious ? '' : 'disabled'}">
+      <a class="page-link" ${hasPrevious ? `href=${previous}` : ''} data-page=${currentPage - 1}>Backward</a>
     </li>
     ${lis}
-    <li class="page-item">
-      <a class="page-link ${hasNext ? '' : 'disabled'}" href=${hasNext ? next : '#'} data-page=${currentPage + 1}>Forvard</a>
+    <li class="page-item ${hasNext ? '' : 'disabled'}">
+      <a class="page-link" ${hasNext ? `href=${next}` : ''} data-page=${currentPage + 1}>Forvard</a>
     </li>`;
 
    handlePaginator();

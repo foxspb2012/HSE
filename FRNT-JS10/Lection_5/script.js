@@ -1,28 +1,31 @@
+'use strict';
+
 // Константы
 const pageSize = 10;
-const pageNumber = 1;
 
 // Шаблоны разметки
 const getCardTemplate = (planet) => {
+  const {diameter, population, gravity, terrain, climate} = planet;
+
   return `
    <p class="card-text">
-      <span>diameter:</span> ${planet.diameter}
+      <span>diameter:</span> ${diameter}
     </p>
     <p class="card-text">
-      <span>population:</span> ${planet.population}
+      <span>population:</span> ${population}
     </p>
     <p class="card-text">
-      <span>gravity:</span> ${planet.gravity}
+      <span>gravity:</span> ${gravity}
     </p>
     <p class="card-text">
-      <span>terrain:</span> ${planet.terrain}
+      <span>terrain:</span> ${terrain}
     </p>
     <p class="card-text">
-      <span>climate:</span> ${planet.climate}
+      <span>climate:</span> ${climate}
     </p>`;
 }
 
-const getTableTemplate = (filmRow) => {
+const getFilmTemplate = (filmRow) => {
   return `
     <table>
       <colgroup span="3"></colgroup>
@@ -53,32 +56,16 @@ const getCharacterTable = (characterRow) =>{
     </table>`
 }
 
-// Сервис для работы с сервером данных - https://swapi.dev
-class SwapiService {
+// Функция для работы с сервером данных - https://swapi.dev
+const swapi = async function (url) {
+  const resource =  await fetch(url);
 
-  async getResource(url) {
-    const res = await fetch(url);
-
-    if (!res.ok) {
-      throw new Error(`Could not fetch ${url}, received ${res.status}`)
-    }
-    return await res.json();
+  if (!resource.ok) {
+    throw new Error(`Could not fetch ${url}, received ${res.status}`)
   }
 
-  getPlanets(pageNumber = 1) {
-    return this.getResource(`https://swapi.dev/api/planets/?page=${pageNumber}`);
-  }
-
-  getAllPlanets(link) {
-    return this.getResource(link);
-  }
-
-  getPlanet(link) {
-    return this.getResource(link);
-  }
+  return await resource.json();
 }
-
-const swapi = new SwapiService();
 
 // Функция отрисовки модального окна
 async function renderPlanetInModal(planet) {
@@ -95,28 +82,28 @@ async function renderPlanetInModal(planet) {
 
   if (planet.films.length > 0) {
     for (const film of planet.films) {
-      const filmDesc = await swapi.getResource(film);
+      const {episode_id, title, release_date, characters} = await swapi(film);
       filmRow +=
         `<tr>
-          <td>${filmDesc.episode_id}</td>
-          <td>${filmDesc.title}</td>
-          <td>${filmDesc.release_date}</td>
+          <td>${episode_id}</td>
+          <td>${title}</td>
+          <td>${release_date}</td>
         </tr>`;
 
-      for (const character of filmDesc.characters) {
-        const characterDesc = await swapi.getResource(character);
-        const homeworldDesc = await swapi.getResource(characterDesc.homeworld);
+      for (const character of characters) {
+        const {name, gender, birth_year, homeworld} = await swapi(character);
+        const homeworldDesc = await swapi(homeworld);
         characterRow +=
           `<tr>
-            <td>${characterDesc.name}</td>
-            <td>${characterDesc.gender}</td>
-            <td>${characterDesc.birth_year}</td>
-            <td>${homeworldDesc.name}</td>
+            <td>${name}</td>
+            <td>${gender}</td>
+            <td>${birth_year}</td>
+            <td>${homeworldDesc}</td>
           </tr>`;
       }
     }
 
-    filmTable = getTableTemplate(filmRow);
+    filmTable = getFilmTemplate(filmRow);
     characterTable = getCharacterTable(characterRow);
   }
 
@@ -132,7 +119,7 @@ function handleModal() {
     async evt => {
       evt.preventDefault();
       const link = evt.target.getAttribute('href');
-      const planet = await swapi.getPlanet(link);
+      const planet = await swapi(link);
       await renderPlanetInModal(planet);
     }
   ));
@@ -169,7 +156,7 @@ function handleShowAll() {
         document.querySelector('.paginator nav').classList.remove('m-right');
         label.textContent = 'Restore pages';
       } else {
-        await fillPage(pageNumber);
+        await fillPage();
         label.textContent = 'Show all';
         document.querySelector('.paginator nav').classList.add('m-right');
       }
@@ -192,14 +179,13 @@ async function fillAllPage() {
   let link = 'https://swapi.dev/api/planets/?page=1';
 
   while (link !== null) {
-    const {results, next} = await swapi.getAllPlanets(link);
+    const {results, next} = await swapi(link);
     link = next;
     allPlanets.push(...results);
   }
 
   await renderPlanets(allPlanets);
 }
-
 
 // Обработчик клика на элемент в пагинации
 function handlePaginator() {
@@ -226,12 +212,11 @@ function renderPaginator(count, next, previous, currentPage) {
   const link = 'https://swapi.dev/api/planets/?page=';
 
   let lis = '';
-  for (let i = 0; i < pageCount; i++) {
-    const pageNumber = i + 1;
+  for (let i = 1; i <= pageCount; i++) {
     lis +=
-      `<li class="page-item ${currentPage === pageNumber ? 'active' : ''}">
-          <a class="page-link" ${currentPage === pageNumber ? '' : `href=${link}${pageNumber}`}
-            data-page=${pageNumber}>${pageNumber}</a>
+      `<li class="page-item ${currentPage === i ? 'active' : ''}">
+          <a class="page-link" ${currentPage === i ? '' : `href=${link}${i}`}
+            data-page=${i}>${i}</a>
       </li>`;
   }
 
@@ -248,12 +233,12 @@ function renderPaginator(count, next, previous, currentPage) {
 }
 
 // Функция отрисовки страницы
-async function fillPage(currentPage) {
-  const {results, count, next, previous} = await swapi.getPlanets(currentPage);
+async function fillPage(pageNumber = 1) {
+  const {results, count, next, previous} = await swapi(`https://swapi.dev/api/planets/?page=${pageNumber}`);
   renderPlanets(results);
-  renderPaginator(count, next, previous, currentPage);
+  renderPaginator(count, next, previous, pageNumber);
   renderShowAll();
   handleModal();
 }
 
-fillPage(pageNumber);
+fillPage();

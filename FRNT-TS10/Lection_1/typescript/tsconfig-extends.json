@@ -1,0 +1,11 @@
+{
+  "include": [
+    "work/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "ts-node": {
+    "esm": true
+  }
+}

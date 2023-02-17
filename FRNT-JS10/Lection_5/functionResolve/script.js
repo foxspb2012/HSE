@@ -212,11 +212,11 @@ function renderPaginator(count, next, previous, currentPage) {
   const link = 'https://swapi.dev/api/planets/?page=';
 
   let lis = '';
-  for (let i = 1; i <= pageCount; i++) {
+  for (let pageNumber = 1; pageNumber <= pageCount; pageNumber++) {
     lis +=
-      `<li class="page-item ${currentPage === i ? 'active' : ''}">
-          <a class="page-link" ${currentPage === i ? '' : `href=${link}${i}`}
-            data-page=${i}>${i}</a>
+      `<li class="page-item ${currentPage === pageNumber ? 'active' : ''}">
+          <a class="page-link" ${currentPage === pageNumber ? '' : `href=${link}${pageNumber}`}
+            data-page=${pageNumber}>${pageNumber}</a>
       </li>`;
   }
 

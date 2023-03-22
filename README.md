@@ -12,3 +12,6 @@
 
 ### 3. FRNT-JS10. Программирование клиентской части на JavaScript
 *  [FRNT-JS10. Программирование клиентской части на JavaScript](http://hse.spbstu.ru/Retraining/Course/FRNT-JS10-Programmirovanie-klientskoj-chasti-na-JavaScript/2580/) - курс для получения навыков разработки программ на языке Javascript, объяснение устройства веб-страниц, DOM-модели и принципов построения клиентских веб-интерфейсов.
+
+### 4. FRNT-TS10. Работа со структурами данных на языке TypeScript
+*  [FRNT-TS10. Работа со структурами данных на языке TypeScript](http://hse.spbstu.ru/Retraining/Course/FRNT-TS10-Rabota-so-strukturami-dannyx-na-yazyke-TypeScript/2582/) - курс является продолжением [FRNT-JS10. Программирование клиентской части на JavaScript]((http://hse.spbstu.ru/Retraining/Course/FRNT-JS10-Programmirovanie-klientskoj-chasti-na-JavaScript/2580/)). В рамках курса слушатели знакомятся с языком TypeScript, являющемся современной заменой языка JavaScript, а также изучают работу со стандартными структурами данных с использованием этого языка и использование основных алгоритмов.

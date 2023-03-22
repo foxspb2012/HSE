@@ -23,37 +23,6 @@ const getCardTemplate = (planet) => {
     </p>`;
 }
 
-const getFilmTemplate = (filmRow) => {
-  return `
-    <table>
-      <colgroup span="3"></colgroup>
-      <tbody>
-      <tr>
-        <th>Episode</th>
-        <th>Title</th>
-        <th>Release date</th>
-      </tr>
-      ${filmRow}
-      </tbody>
-    </table>`
-}
-
-const getCharacterTable = (characterRow) =>{
-  return `
-    <table>
-      <colgroup span="4"></colgroup>
-      <tbody>
-      <tr>
-        <th>Name</th>
-        <th>Gender</th>
-        <th>Birth date</th>
-        <th>Homeworld</th>
-      </tr>
-      ${characterRow}
-      </tbody>
-    </table>`
-}
-
 // Класс для состояния приложения
 class State {
   constructor(pageSize) {
@@ -134,6 +103,37 @@ class ModalComponent {
     this.planetsService = planetsService;
   }
 
+  getFilmTemplate = (filmRow) => {
+    return `
+    <table>
+      <colgroup span="3"></colgroup>
+      <tbody>
+      <tr>
+        <th>Episode</th>
+        <th>Title</th>
+        <th>Release date</th>
+      </tr>
+      ${filmRow}
+      </tbody>
+    </table>`
+  }
+
+  getCharacterTable = (characterRow) =>{
+    return `
+    <table>
+      <colgroup span="4"></colgroup>
+      <tbody>
+      <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Birth date</th>
+        <th>Homeworld</th>
+      </tr>
+      ${characterRow}
+      </tbody>
+    </table>`
+  }
+
   async render() {
     const planet = this.state.planetInfo;
     let filmRow = '';
@@ -170,8 +170,8 @@ class ModalComponent {
         }
       }
 
-      filmTable = getFilmTemplate(filmRow);
-      characterTable = getCharacterTable(characterRow);
+      filmTable = this.getFilmTemplate(filmRow);
+      characterTable = this.getCharacterTable(characterRow);
     }
 
     modalBody.innerHTML = [cardHead, filmTable, characterTable].join('');

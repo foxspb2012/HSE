@@ -12,22 +12,33 @@ export class AuthService {
   }
 
   checkUser(user: IUser): boolean {
-    const isUserExist = this.usersStorage.find(el => el.login === user.login);
-    if (isUserExist) {
-      return isUserExist.psw === user.psw;
+    const inLocalStorage = window.localStorage.getItem(`userLogin: ${user.login}`);
+    const inUsersStorage = this.usersStorage.find((el) => el.login === user.login);
+
+    let userInStore: IUser = <IUser>{};
+
+    if (inLocalStorage) {
+      userInStore = JSON.parse(inLocalStorage);
+      return userInStore.psw === user.psw;
+    } else if (inUsersStorage) {
+      return inUsersStorage.psw === user.psw;
+    } else {
+      return false;
     }
-    return false;
   }
 
-  setUser(user: IUser): void {
-    const isUserExist = this.usersStorage.find(el => el.login === user.login);
-    if (!isUserExist && user?.login) {
+  setUser(user: IUser, saveToStorage: boolean): void {
+    if (saveToStorage) {
+      window.localStorage.setItem(`userLogin: ${user.login}`, JSON.stringify(user));
+    } else {
       this.usersStorage.push(user);
     }
   }
 
-  isUserExists(user: IUser): boolean {
-    const isUserExists = this.usersStorage.find(el => el.login === user.login);
-    return !!isUserExists;
+  isUserExists(login: string): boolean {
+    const inLocalStorage = Boolean(window.localStorage.getItem(`userLogin: ${login}`));
+    const inUsersStorage = Boolean(this.usersStorage.find((el) => el.login === login));
+
+    return inLocalStorage || inUsersStorage;
   }
 }

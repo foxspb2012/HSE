@@ -6,7 +6,7 @@ import {AuthService} from '../../../services/auth/auth.service';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
   login: string;
@@ -14,7 +14,7 @@ export class RegistrationComponent implements OnInit {
   pswRepeat: string;
   email: string;
   cardNumber: string;
-
+  saveToStorage: boolean;
 
   constructor(private messageService: MessageService,
               private authService: AuthService) {
@@ -25,6 +25,8 @@ export class RegistrationComponent implements OnInit {
   }
 
   registration(evt: Event): void | boolean {
+    const saveToStorage: boolean = this.saveToStorage;
+
     if (this.psw !== this.pswRepeat) {
       this.messageService.add({severity: 'error', summary: 'passwords don\'t match'});
       return false;
@@ -33,12 +35,12 @@ export class RegistrationComponent implements OnInit {
     const userObj: IUser = {
       psw: this.psw,
       cardNumber: this.cardNumber,
-      login: this.login,
+      login: this.login.toLowerCase(),
       email: this.email
     }
 
-    if (!this.authService.isUserExists(userObj)) {
-      this.authService.setUser(userObj);
+    if (!this.authService.isUserExists(userObj.login)) {
+      this.authService.setUser(userObj, saveToStorage);
       this.messageService.add({severity: 'success', summary: 'registered successfully'});
     } else {
       this.messageService.add({severity: 'warn', summary: 'user already registered'});

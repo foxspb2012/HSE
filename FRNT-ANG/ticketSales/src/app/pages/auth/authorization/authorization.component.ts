@@ -40,7 +40,7 @@ export class AuthorizationComponent implements OnInit, OnDestroy {
   onAuth(evt: Event): void {
     const authUser: IUser = {
       psw: this.psw,
-      login: this.login
+      login: this.login.toLowerCase()
     }
     if (this.authService.checkUser(authUser)) {
       this.userService.setUser(authUser);

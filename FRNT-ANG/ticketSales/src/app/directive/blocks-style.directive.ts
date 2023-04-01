@@ -17,6 +17,7 @@ export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges{
   private items: HTMLElement[];
   private index: number = 0;
   public activeElementIndex: number;
+  $event: KeyboardEvent;
 
   constructor(private el: ElementRef) {
   }

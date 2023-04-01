@@ -10,6 +10,7 @@ export class AuthComponent implements OnInit {
   constructor() { }
   isTabCaching: boolean = false;
   ngOnInit(): void {
+    window.sessionStorage.removeItem('userSession');
   }
 
 }

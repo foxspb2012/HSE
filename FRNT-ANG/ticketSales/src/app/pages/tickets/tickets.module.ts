@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 
 import { TicketsRoutingModule } from './tickets-routing.module';
 import { TicketsComponent } from './tickets.component';
@@ -26,7 +26,8 @@ import { BlocksStyleDirective } from "../../directive/blocks-style.directive";
     TicketsRoutingModule,
     MenubarModule,
     DropdownModule,
-    FormsModule
+    FormsModule,
+    NgOptimizedImage
   ]
 })
 export class TicketsModule { }

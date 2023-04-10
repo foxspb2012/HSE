@@ -10,11 +10,11 @@ export class UserService {
   constructor() {
   }
 
-  getUser(): string{
+  getSessionUser(): string{
     return window.sessionStorage.getItem(`userSession:`) || "" ;
   };
 
-  setUser(user: IUser): void {
+  setSessionUser(user: IUser): void {
     window.sessionStorage.setItem(`userSession:`, user.login);
   };
 }

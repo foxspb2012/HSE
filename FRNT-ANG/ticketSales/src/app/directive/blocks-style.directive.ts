@@ -3,11 +3,11 @@ import {AfterViewInit, Directive, ElementRef, EventEmitter, Input, OnChanges, On
 @Directive({
   selector: '[appBlocksStyle]',
   host: {
-    '(document:keyup)': 'initKeyUp($event)' 
+    '(document:keyup)': 'initKeyUp($event)'
   },
   exportAs: 'blocksStyle'
 })
-export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges{
+export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges {
 
   @Input() selector: string;
   @Input() initFirst: boolean = false;
@@ -22,66 +22,69 @@ export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges{
   constructor(private el: ElementRef) {
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.activeElementIndex = 0;
 
     if (this.selector) {
-      this.items = this.el.nativeElement.querySelectorAll(this.selector)
+      this.items = this.el.nativeElement.querySelectorAll(this.selector);
       if (this.initFirst) {
         if (this.items[0]) {
-          (this.items[0] as HTMLElement).setAttribute('style', 'border: 2px solid red')
+          (this.items[0] as HTMLElement).setAttribute('style', 'border: 2px solid red');
         }
       }
     } else {
-      console.error("Selector error")
+      console.error('Не передан селектор');
     }
 
     setTimeout(() => {
-      this.renderComplete.emit(true)
+      this.renderComplete.emit(true);
     })
-
   }
 
-  initKeyUp(ev: KeyboardEvent): void { 
+  initKeyUp(evt: KeyboardEvent): void | boolean {
 
-    if (ev.key === 'ArrowRight' || ev.key === 'ArrowLeft') {
-      (this.items[this.index] as HTMLElement).removeAttribute('style')
-    }
-    console.log('evKey', ev);
-
-    if (ev.key === 'ArrowRight') {
-
-      this.index++;
-
-      if (this.items[this.index]) {
-        (this.items[this.index] as HTMLElement).setAttribute('style', 'border: 2px solid red');
+    if (evt.key === 'ArrowRight') {
+      if (this.index === this.items.length - 1) {
+        return false;
       }
-    } else if (ev.key === 'ArrowLeft') {
-      this.index--;
-      if (this.items[this.index]) {
-        (this.items[this.index] as HTMLElement).setAttribute('style', 'border: 2px solid red');
-      }
-    }
+      this.manageStyle(evt.key);
 
+    } else if (evt.key === 'ArrowLeft') {
+      if (this.index === 0) {
+        return false;
+      }
+      this.manageStyle(evt.key);
+    }
     if (this.index >= 0) {
       this.activeElementIndex = this.index;
     }
-
   }
 
-  initStyle(index: number) {
+  manageStyle(key: string): void {
+    (this.items[this.index] as HTMLElement).removeAttribute('style');
 
+    if (key === 'ArrowRight') {
+      this.index++;
+    } else {
+      this.index--;
+    }
+
+    if (this.items[this.index]) {
+      (this.items[this.index] as HTMLElement).setAttribute('style', 'border: 2px solid red');
+    }
+  }
+
+  initStyle(index: number): void {
     if (this.items[index]) {
       (this.items[index] as HTMLElement).setAttribute('style', 'border: 2px solid red');
     } else if (!this.items[index]) {
       (this.items[index] as HTMLElement).removeAttribute('style');
     }
   }
-
 }

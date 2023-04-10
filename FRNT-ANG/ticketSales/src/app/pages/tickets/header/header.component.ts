@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy, OnChanges {
       this.time = new Date();
     }, 1000);
 
-    this.user = this.userService.getUser();
+    this.user = this.userService.getSessionUser();
   }
 
   ngOnChanges(evt: SimpleChanges): void {
@@ -65,7 +65,6 @@ export class HeaderComponent implements OnInit, OnDestroy, OnChanges {
         label: 'Выйти',
         routerLink:['/auth']
       },
-
     ];
   }
 }

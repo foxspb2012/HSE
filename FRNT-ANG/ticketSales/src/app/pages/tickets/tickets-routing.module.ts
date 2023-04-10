@@ -8,13 +8,15 @@ const routes: Routes = [
   {
     path: '',
     component: TicketsComponent,
-    children: [{
-      path: 'tickets-list',
-      component: TicketListComponent
-    }, {
-      path: 'ticket/:id',
-      loadChildren:() => import('../ticket-info/ticket-info.module').then(m => m.TicketInfoModule)
-    }]
+    children: [
+      {
+        path: 'tickets-list',
+        component: TicketListComponent
+      },
+      {
+        path: 'ticket/:id',
+        loadChildren: () => import('../ticket-info/ticket-info.module').then(m => m.TicketInfoModule)
+      }]
   },
 ];
 

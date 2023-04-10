@@ -10,17 +10,19 @@ import { TicketsStorageService } from '../../../services/tickets-storage/tickets
 })
 export class TicketItemComponent implements OnInit {
   ticket: ITour | undefined;
+
   constructor(private route: ActivatedRoute,
-              private  ticketStorage: TicketsStorageService) { }
+              private ticketStorage: TicketsStorageService) {
+  }
 
   ngOnInit(): void {
-    const routeIdParam = this.route.snapshot.paramMap.get('id');
-    const queryIdParam = this.route.snapshot.queryParamMap.get('id');
+    const routeIdParam = this.route.snapshot.paramMap.get('id');      // for route
+    const queryIdParam = this.route.snapshot.queryParamMap.get('id'); // for queryParamMap
 
     const paramValueId = routeIdParam || queryIdParam;
-    if(paramValueId){
-      const  ticketStorage = this.ticketStorage.getStorage();
-      this.ticket = ticketStorage.find((el)=> el.id ===paramValueId);
+    if (paramValueId) {
+      const ticketStorage = this.ticketStorage.getStorage();
+      this.ticket = ticketStorage.find((el) => el.id === paramValueId);
     }
   }
 }

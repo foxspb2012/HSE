@@ -40,10 +40,10 @@ export class AuthorizationComponent implements OnInit, OnDestroy {
   onAuth(evt: Event): void {
     const authUser: IUser = {
       psw: this.psw,
-      login: this.login.toLowerCase()
+      login: this.login
     }
     if (this.authService.checkUser(authUser)) {
-      this.userService.setUser(authUser);
+      this.userService.setSessionUser(authUser);
       this.router.navigate(['tickets/tickets-list'])
     } else {
       this.messageService.add({severity: 'error', summary: 'check the data'});

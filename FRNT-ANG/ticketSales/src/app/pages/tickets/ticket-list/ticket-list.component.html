@@ -1,7 +1,7 @@
 <div *ngIf="tickets">
-  <div>
+  <div *ngIf="renderCompleted">
     <p>Количество элементов: {{tourWrap.childElementCount}}</p>
-    <p>Активный элемент: {{blockDirective.activeElementIndex}}</p>
+    <p>Активный элемент: {{blockDirective.activeElementIndex + 1}}</p>
   </div>
   <div class="mb-4">
     <span class="mx-3">Поиск тура</span>
@@ -23,11 +23,11 @@
        (renderComplete)="directiveRenderComplete($event)"
        class="d-flex flex-wrap justify-content-around">
     <div class="ticket-item col-3 m-2"
-         *ngFor="let item of tickets; let i = index"
-         (click)="goToTicketInfoPage(item)">
+         (click)="goToTicketInfoPage(item)"
+         *ngFor="let item of tickets; let i = index">
       <div class="ticket-title">{{item.name}} </div>
       <div class="ticket-img">
-        <img class="w-100" src="/assets/img/{{item.img}}" alt=""/>
+        <img class="w-100" ngSrc="assets/img/{{item.img}}" alt="" width="385" height="200"/>
       </div>
     </div>
   </div>

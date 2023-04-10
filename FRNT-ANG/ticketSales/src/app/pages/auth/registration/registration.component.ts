@@ -35,11 +35,11 @@ export class RegistrationComponent implements OnInit {
     const userObj: IUser = {
       psw: this.psw,
       cardNumber: this.cardNumber,
-      login: this.login.toLowerCase(),
+      login: this.login,
       email: this.email
     }
 
-    if (!this.authService.isUserExists(userObj.login)) {
+    if (!this.authService.isUserExists(userObj.login.toLowerCase())) {
       this.authService.setUser(userObj, saveToStorage);
       this.messageService.add({severity: 'success', summary: 'registered successfully'});
     } else {

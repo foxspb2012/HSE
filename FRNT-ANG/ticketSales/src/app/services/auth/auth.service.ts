@@ -12,8 +12,9 @@ export class AuthService {
   }
 
   checkUser(user: IUser): boolean {
-    const inLocalStorage = window.localStorage.getItem(`userLogin: ${user.login}`);
-    const inUsersStorage = this.usersStorage.find((el) => el.login === user.login);
+    const login = user.login.toLowerCase();
+    const inLocalStorage = window.localStorage.getItem(`userLogin: ${login}`);
+    const inUsersStorage = this.usersStorage.find((el) => el.login.toLowerCase() === login);
 
     let userInStore: IUser = <IUser>{};
 
@@ -29,7 +30,7 @@ export class AuthService {
 
   setUser(user: IUser, saveToStorage: boolean): void {
     if (saveToStorage) {
-      window.localStorage.setItem(`userLogin: ${user.login}`, JSON.stringify(user));
+      window.localStorage.setItem(`userLogin: ${user.login.toLowerCase()}`, JSON.stringify(user));
     } else {
       this.usersStorage.push(user);
     }

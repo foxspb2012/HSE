@@ -1,0 +1,22 @@
+<div class="d-flex flex-column">
+  <div class="main-content">
+    <div class="overflow-auto h-100 w-100 p-3">
+      <div class="d-flex flex-column container settings-width">
+        <p-checkbox name="groupname" [binary]="true"
+                    label="Включить темную тему"
+                    [(ngModel)]="darkTheme">
+        </p-checkbox>
+
+        <div class="mt-5 d-flex justify-content-between">
+          <button [disabled]="!darkTheme"
+                  (click)="enableSettings($event)"
+                  type="button"
+                  class="btn btn-success">
+            Применить настройки
+          </button>
+          <a routerLink="/tickets/tickets-list" class="btn btn-success">Назад</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,0 @@
-# Отправка JSON объекта
-POST http://localhost:3000/echo
-Content-Type: application/json
-
-{
-  "message": "Привет сервис, я жду от тебя ответа"
-}

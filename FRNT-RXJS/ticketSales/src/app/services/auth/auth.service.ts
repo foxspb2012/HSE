@@ -28,7 +28,7 @@ export class AuthService {
     }
   }
 
-  setUser(user: IUser, saveToStorage: boolean): void {
+  setUser(user: IUser, saveToStorage: boolean = false): void {
     if (saveToStorage) {
       window.localStorage.setItem(`userLogin: ${user.login.toLowerCase()}`, JSON.stringify(user));
     } else {

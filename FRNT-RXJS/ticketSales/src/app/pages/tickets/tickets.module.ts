@@ -12,6 +12,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { BlocksStyleDirective } from "../../directive/blocks-style.directive";
 import { CalendarModule } from 'primeng/calendar';
+import { InputTextModule } from 'primeng/inputtext';
+import { MessageService } from 'primeng/api';
+
 
 @NgModule({
   declarations: [
@@ -29,8 +32,10 @@ import { CalendarModule } from 'primeng/calendar';
     DropdownModule,
     FormsModule,
     NgOptimizedImage,
-    CalendarModule
-  ]
+    InputTextModule,
+    CalendarModule,
+  ],
+  providers: [MessageService]
 })
 export class TicketsModule {
 }

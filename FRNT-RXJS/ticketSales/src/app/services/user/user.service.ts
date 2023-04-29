@@ -6,15 +6,30 @@ import { IUser } from '../../models/users';
 })
 export class UserService {
   private user: IUser;
+  private token:string;
+  private usersStorage: IUser[] = [];
+  constructor() { }
 
-  constructor() {
+  getUser(): IUser {
+    return this.user;
+  };
+
+  setUser(user: IUser) {
+    return this.user = user;
+  };
+  setToken(token:string):void{
+    this.token = token;
+    window.localStorage.setItem('user_token', JSON.stringify(token))
   }
-
-  getSessionUser(): string {
-    return window.sessionStorage.getItem(`userSession:`) || "";
+  getToken(): string {
+    if(this.token){
+      return this.token;
+    }else{
+      let token: any = window.localStorage.getItem('user_token');
+      return token;
+    }
   };
-
-  setSessionUser(user: IUser): void {
-    window.sessionStorage.setItem(`userSession:`, user.login);
-  };
+  removeToken(): void{
+    window.localStorage.removeItem('user_token');
+  }
 }

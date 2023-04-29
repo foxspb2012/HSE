@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { BlocksStyleDirective } from '../../../directive/blocks-style.directive';
 import { TicketService } from '../../../services/ticket/ticket.service';
 import { TicketsStorageService } from '../../../services/tickets-storage/tickets-storage.service';
-import { Subscription } from 'rxjs';
+import { debounceTime, fromEvent, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ticket-list',
@@ -20,6 +20,9 @@ export class TicketListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('tourWrap') tourWrap: ElementRef;
   @ViewChild('tourWrap', {read: BlocksStyleDirective}) blockDirective: BlocksStyleDirective;
+  @ViewChild('ticketSearch') ticketSearch: ElementRef;
+  searchTicketSub: Subscription;
+  ticketSearchValue: string;
 
   constructor(private ticketService: TicketService,
               private ticketStorage: TicketsStorageService,
@@ -64,17 +67,30 @@ export class TicketListComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
+    const fromEventObserver = fromEvent(this.ticketSearch.nativeElement, "keyup");
+    this.searchTicketSub = fromEventObserver.pipe(
+      debounceTime(200)).subscribe((ev: any) => {
+        if (this.ticketSearchValue) {
+          this.tickets = this.ticketsCopy.filter((el) => {
+            const nameToLower = typeof (el?.name) === "string" ? el.name.toLowerCase() : '';
+            return nameToLower.includes(this.ticketSearchValue.toLowerCase());
+          });
+        } else {
+          this.tickets = [...this.ticketsCopy]
+        }
+      }
+    );
   }
 
-  search(evt: Event): void {
-    const findNameTour: ITour | undefined = this.tickets.find((item: ITour): boolean => {
-      return item.name === this.nameTour;
-    })
-    if (findNameTour) {
-      this.goToTicketInfoPage(findNameTour);
-    }
-  }
+  // search(evt: Event): void {
+  //   const findNameTour: ITour | undefined = this.tickets.find((item: ITour): boolean => {
+  //     return item.name === this.nameTour;
+  //   })
+  //   if (findNameTour) {
+  //     this.goToTicketInfoPage(findNameTour);
+  //   }
+  // }
 
   goToTicketInfoPage(item: ITour): void {
     this.router.navigate([`/tickets/ticket/${item.id}`]);
@@ -96,5 +112,6 @@ export class TicketListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.tourUnsubscriber.unsubscribe();
+    this.searchTicketSub.unsubscribe();
   }
 }

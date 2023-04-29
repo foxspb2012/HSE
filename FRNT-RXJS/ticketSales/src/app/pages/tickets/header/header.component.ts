@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy, OnChanges {
       this.time = new Date();
     }, 1000);
 
-    this.user = this.userService.getSessionUser();
+    this.user = this.userService.getUser().login;
   }
 
   ngOnChanges(evt: SimpleChanges): void {

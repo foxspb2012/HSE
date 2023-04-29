@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ObservableExampleService } from './services/testing/testing.service';
+import { ConfigService } from './services/config/config.service';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,14 @@ export class AppComponent implements OnInit {
   title: string = 'ticketSales2022';
   prop: string;
 
-  constructor(private testing: ObservableExampleService) {
-
+  constructor(private testing: ObservableExampleService,
+              private configService: ConfigService) {
+    testing.initObservable();
   }
 
   ngOnInit(): void {
+
+    this.configService.configLoad();
     /** Observable **/
     const myObservable = this.testing.getObservable();
     // first subscriber
@@ -31,14 +35,14 @@ export class AppComponent implements OnInit {
     /** Subject **/
     const mySubject = this.testing.getSubject();
 
-    // subscribe
-    mySubject.subscribe((data) => {
-      // console.log('first data subject', data);
-    });
-
-    mySubject.subscribe((data) => {
-      // console.log('second data subject', data);
-    });
+    // // subscribe
+    // mySubject.subscribe((data) => {
+    //   // console.log('first data subject', data);
+    // });
+    //
+    // mySubject.subscribe((data) => {
+    //   // console.log('second data subject', data);
+    // });
 
     // send subject data
     mySubject.next('subject value');

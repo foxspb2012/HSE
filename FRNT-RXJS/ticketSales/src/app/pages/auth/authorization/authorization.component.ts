@@ -40,11 +40,15 @@ export class AuthorizationComponent implements OnInit, OnDestroy {
   onAuth(evt: Event): void {
     const authUser: IUser = {
       psw: this.psw,
-      login: this.login
+      login: this.login,
+      cardNumber: this.cardNumber
     }
     if (this.authService.checkUser(authUser)) {
-      this.userService.setSessionUser(authUser);
-      this.router.navigate(['tickets/tickets-list'])
+      this.userService.setUser(authUser);
+
+      this.userService.setToken('user-private-token');
+
+      this.router.navigate(['tickets/tickets-list']);
     } else {
       this.messageService.add({severity: 'error', summary: 'check the data'});
     }

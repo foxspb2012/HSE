@@ -21,6 +21,10 @@ export class UserService {
     this.token = token;
     window.localStorage.setItem('user_token', JSON.stringify(token))
   }
+  setToStore(token: string): void{
+    window.localStorage.setItem('userToken', token)
+  }
+
   getToken(): string {
     if(this.token){
       return this.token;

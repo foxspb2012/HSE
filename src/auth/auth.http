@@ -1,0 +1,30 @@
+###
+# Create a new user
+
+POST http://localhost:3000/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "login": "Alice",
+  "email": "alice@inbox.ru",
+  "psw": "12346",
+  "cardNumber": "100500"
+}
+
+###
+
+# Login user by email and password
+POST http://localhost:3000/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "login": "foxspb",
+  "psw": "147"
+}
+
+###
+
+# Get user by ID
+GET http://localhost:3000/auth/64711265f3f7ec10e88403a5 HTTP/1.1
+
+###
